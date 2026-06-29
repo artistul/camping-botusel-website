@@ -1,0 +1,32 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Camping Botușel</title>
+  <desc id="desc">Semn cu munți, brad, cort, autorulotă și foc de tabără.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCEEDB"/>
+      <stop offset="1" stop-color="#F7F0DF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="120" r="108" fill="url(#sky)" stroke="#244334" stroke-width="8"/>
+  <path d="M28 151 C58 123,72 100,92 117 C104 128,108 135,120 118 C140 90,160 67,206 151Z" fill="#577960"/>
+  <path d="M62 151 C92 118,107 88,125 107 C133 116,139 126,150 112 C162 97,179 85,211 151Z" fill="#244334" opacity=".95"/>
+  <path d="M48 156 C77 148,99 146,122 154 C149 163,175 148,206 157 L206 178 C166 170,140 184,113 173 C89 163,69 168,48 178Z" fill="#C9D2A3"/>
+  <g transform="translate(53 121)">
+    <path d="M28 51 L54 7 L80 51Z" fill="#F7F0DF" stroke="#244334" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M54 10 L54 51" stroke="#244334" stroke-width="5" stroke-linecap="round"/>
+    <path d="M54 51 L68 51 L54 25Z" fill="#D77445" opacity=".9"/>
+  </g>
+  <g transform="translate(129 127)">
+    <rect x="0" y="18" width="54" height="30" rx="7" fill="#F7F0DF" stroke="#244334" stroke-width="6"/>
+    <path d="M38 18 L50 18 L56 30 L54 48 L38 48Z" fill="#E7D2A5" stroke="#244334" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="8" y="25" width="15" height="10" rx="3" fill="#8DB4BA" stroke="#244334" stroke-width="3"/>
+    <circle cx="14" cy="51" r="6" fill="#244334"/>
+    <circle cx="47" cy="51" r="6" fill="#244334"/>
+  </g>
+  <g transform="translate(113 164)">
+    <path d="M-18 20 C-8 9,-5 1,0 -15 C6 -2,19 4,13 20Z" fill="#D77445"/>
+    <path d="M-6 20 C-1 12,3 7,2 -2 C10 8,9 14,4 20Z" fill="#F2B44B"/>
+    <path d="M-20 24 L20 32 M20 24 L-20 32" stroke="#7B4B30" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <path d="M55 195 C81 188,104 189,126 196 C151 204,177 199,199 190" fill="none" stroke="#7B4B30" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+</svg>

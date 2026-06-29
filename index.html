@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Camping Botușel, Fundu Moldovei, Bucovina — site de prezentare în pregătire pentru corturi, autorulote și seri la foc de tabără.">
+  <title>Camping Botușel — În curând</title>
+  <link rel="icon" href="assets/botusel-logo.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f2e8;
+      --paper: #fffdf7;
+      --ink: #17251d;
+      --muted: #66746c;
+      --line: rgba(23, 37, 29, .12);
+      --glass: rgba(255, 253, 247, .72);
+      --forest: #1f4733;
+      --forest-2: #2d6349;
+      --meadow: #9ab36d;
+      --sun: #f1b65f;
+      --clay: #c96e40;
+      --sky: #bfd9dd;
+      --wood: #8a5b39;
+      --cream: #fff4d9;
+      --shadow: 0 30px 90px rgba(23, 37, 29, .16);
+      --shadow-soft: 0 18px 60px rgba(23, 37, 29, .10);
+      --radius: 30px;
+      --max: 1240px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% -8%, rgba(241, 182, 95, .32), transparent 38rem),
+        radial-gradient(circle at 6% 14%, rgba(154, 179, 109, .32), transparent 30rem),
+        radial-gradient(circle at 94% 20%, rgba(191, 217, 221, .55), transparent 33rem),
+        linear-gradient(180deg, #fffaf0 0%, var(--bg) 42%, #f4ead7 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -3;
+      opacity: .6;
+      background-image:
+        linear-gradient(rgba(23,37,29,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23,37,29,.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, #000, transparent 76%);
+    }
+
+    a { color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 100;
+      transform-origin: left;
+      transform: scaleX(0);
+      background: linear-gradient(90deg, var(--forest), var(--meadow), var(--sun));
+      box-shadow: 0 0 22px rgba(154,179,109,.8);
+    }
+
+    .shell { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: 10px;
+      transform: translateY(-160%);
+      background: var(--ink);
+      color: white;
+      padding: 11px 15px;
+      border-radius: 999px;
+      z-index: 110;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 80;
+      background: rgba(255, 253, 247, .78);
+      backdrop-filter: blur(24px) saturate(150%);
+      border-bottom: 1px solid rgba(23, 37, 29, .1);
+      transition: transform .35s ease, background .35s ease;
+    }
+
+    .topbar.is-scrolled { background: rgba(255, 253, 247, .92); box-shadow: 0 12px 40px rgba(23,37,29,.07); }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: max-content;
+    }
+    .brand img { width: 44px; height: 44px; filter: drop-shadow(0 8px 16px rgba(23,37,29,.12)); }
+    .brand strong { display: block; font-size: .98rem; line-height: 1; letter-spacing: -.02em; }
+    .brand span span { display: block; margin-top: 4px; color: var(--muted); font-size: .76rem; }
+
+    .main-links { display: flex; align-items: center; gap: 4px; }
+    .main-links a {
+      text-decoration: none;
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: rgba(23,37,29,.75);
+      font-size: .91rem;
+      font-weight: 760;
+      transition: background .2s ease, transform .2s ease, color .2s ease;
+    }
+    .main-links a:hover { background: rgba(31,71,51,.09); color: var(--ink); transform: translateY(-1px); }
+    .reserve-small {
+      text-decoration: none;
+      padding: 10px 17px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 850;
+      box-shadow: 0 12px 34px rgba(23,37,29,.18);
+    }
+
+    .menu-button { display: none; }
+
+    .product-nav {
+      position: sticky;
+      top: 69px;
+      z-index: 70;
+      background: rgba(255,255,255,.68);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(23, 37, 29, .09);
+    }
+
+    .product-nav .shell {
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .product-nav .shell::-webkit-scrollbar { display: none; }
+    .product-title { font-weight: 860; min-width: max-content; letter-spacing: -.02em; }
+    .product-tabs { display: flex; align-items: center; gap: 3px; min-width: max-content; }
+    .product-tabs a {
+      text-decoration: none;
+      color: rgba(23,37,29,.68);
+      font-size: .86rem;
+      font-weight: 790;
+      border-radius: 999px;
+      padding: 8px 12px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .product-tabs a.is-active, .product-tabs a:hover { background: rgba(31,71,51,.1); color: var(--forest); }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 128px 0 52px;
+      overflow: clip;
+      isolation: isolate;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      transform: translateY(calc(var(--scroll-y, 0px) * .12));
+      background:
+        linear-gradient(180deg, rgba(255,253,247,.05) 0%, rgba(255,253,247,.8) 84%, var(--bg) 100%),
+        radial-gradient(circle at 49% 18%, rgba(255,255,255,.88), transparent 18rem),
+        linear-gradient(135deg, rgba(31,71,51,.11), transparent 42%),
+        linear-gradient(180deg, #dcecf0 0%, #fbf6e9 48%, #dfe9bd 100%);
+    }
+
+    .hero-bg::before,
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150vw;
+      height: 42vh;
+      bottom: -4vh;
+      background: var(--forest);
+      opacity: .14;
+      clip-path: polygon(0 70%, 9% 52%, 18% 62%, 29% 29%, 42% 64%, 54% 34%, 67% 65%, 78% 39%, 90% 61%, 100% 42%, 100% 100%, 0 100%);
+    }
+    .hero-bg::after {
+      width: 130vw;
+      height: 35vh;
+      bottom: -1vh;
+      opacity: .18;
+      background: var(--meadow);
+      clip-path: polygon(0 62%, 12% 46%, 23% 68%, 34% 38%, 48% 69%, 58% 43%, 72% 66%, 84% 47%, 100% 64%, 100% 100%, 0 100%);
+    }
+
+    .hero-inner { text-align: center; position: relative; }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 13px;
+      border: 1px solid rgba(23,37,29,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.56);
+      backdrop-filter: blur(18px);
+      color: rgba(23,37,29,.72);
+      font-size: .82rem;
+      font-weight: 850;
+      letter-spacing: .02em;
+      box-shadow: 0 12px 36px rgba(23,37,29,.07);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--clay); box-shadow: 0 0 0 7px rgba(201,110,64,.13); }
+
+    h1, h2, h3, p { text-wrap: pretty; }
+    h1 {
+      margin: 22px auto 0;
+      max-width: 1050px;
+      font-size: clamp(4.2rem, 11.5vw, 12.5rem);
+      line-height: .78;
+      letter-spacing: -.105em;
+      font-weight: 920;
+    }
+    .hero-subtitle {
+      margin: 28px auto 0;
+      max-width: 760px;
+      color: rgba(23,37,29,.72);
+      font-size: clamp(1.04rem, 1.65vw, 1.38rem);
+      line-height: 1.55;
+      font-weight: 570;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 880;
+      border: 1px solid transparent;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+      cursor: pointer;
+    }
+    .button.primary { background: #121d16; color: white; box-shadow: 0 18px 45px rgba(23,37,29,.2); }
+    .button.secondary { background: rgba(255,255,255,.72); border-color: rgba(23,37,29,.13); color: var(--ink); backdrop-filter: blur(14px); }
+    .button:hover { transform: translateY(-3px); }
+    .button.primary:hover { box-shadow: 0 25px 60px rgba(23,37,29,.24); }
+
+    .hero-stage {
+      width: min(92vw, 980px);
+      height: min(42vw, 380px);
+      min-height: 270px;
+      margin: 46px auto 0;
+      position: relative;
+      border-radius: 42px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(255,255,255,.95), transparent 17rem),
+        linear-gradient(180deg, #d8eef1, #fff1cf 47%, #a9bd79 48%, #5f8558 100%);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.7);
+      transform-style: preserve-3d;
+      transition: transform .16s ease-out;
+    }
+
+    .placeholder-label {
+      position: absolute;
+      inset: 18px 18px auto auto;
+      z-index: 5;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.66);
+      backdrop-filter: blur(16px);
+      color: rgba(23,37,29,.66);
+      font-size: .76rem;
+      font-weight: 850;
+      border: 1px solid rgba(23,37,29,.1);
+    }
+
+    .sun-disc {
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      border-radius: 999px;
+      left: 9%;
+      top: 13%;
+      background: radial-gradient(circle, #fff6c8 0 35%, #f1b65f 70%);
+      box-shadow: 0 0 80px rgba(241,182,95,.7);
+      animation: breathe 4.5s ease-in-out infinite;
+    }
+    .stage-mountain, .stage-mountain.two {
+      position: absolute;
+      left: -8%;
+      right: -8%;
+      bottom: 31%;
+      height: 44%;
+      background: rgba(31,71,51,.18);
+      clip-path: polygon(0 90%, 14% 42%, 25% 76%, 38% 28%, 51% 78%, 64% 36%, 77% 73%, 90% 31%, 100% 68%, 100% 100%, 0 100%);
+    }
+    .stage-mountain.two { bottom: 23%; background: rgba(45,99,73,.25); transform: scaleX(1.06); }
+    .stage-meadow {
+      position: absolute;
+      inset: auto -2% 0 -2%;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(154,179,109,.85), #436a48);
+      clip-path: ellipse(60% 38% at 50% 100%);
+    }
+    .tent {
+      position: absolute;
+      left: 48%;
+      bottom: 18%;
+      width: 180px;
+      height: 104px;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #fff1cc 0 45%, #d9894a 46% 100%);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      filter: drop-shadow(0 22px 18px rgba(23,37,29,.23));
+    }
+    .tent::after {
+      content: "";
+      position: absolute;
+      inset: 28px 65px 0;
+      background: #203628;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      opacity: .72;
+    }
+    .camper {
+      position: absolute;
+      right: 14%;
+      bottom: 20%;
+      width: 210px;
+      height: 88px;
+      border-radius: 28px 36px 22px 22px;
+      background: rgba(255,253,247,.96);
+      box-shadow: 0 24px 22px rgba(23,37,29,.18);
+    }
+    .camper::before {
+      content: "";
+      position: absolute;
+      left: 24px;
+      top: 18px;
+      width: 84px;
+      height: 28px;
+      border-radius: 14px;
+      background: #bfd9dd;
+      box-shadow: 96px 5px 0 -4px #bfd9dd;
+    }
+    .camper::after {
+      content: "";
+      position: absolute;
+      left: 34px;
+      right: 36px;
+      bottom: -14px;
+      height: 28px;
+      background: radial-gradient(circle, #17251d 0 36%, transparent 37%) left/42px 28px no-repeat,
+                  radial-gradient(circle, #17251d 0 36%, transparent 37%) right/42px 28px no-repeat;
+    }
+    .campfire {
+      position: absolute;
+      left: 34%;
+      bottom: 18%;
+      width: 48px;
+      height: 66px;
+      border-radius: 50% 50% 45% 45%;
+      background: radial-gradient(circle at 50% 76%, #fff 0 10%, #ffd56b 11% 35%, #e46d39 36% 62%, transparent 63%);
+      filter: drop-shadow(0 0 18px rgba(241,182,95,.82));
+      animation: flame 1.8s ease-in-out infinite alternate;
+    }
+    .floating-chip {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(23,37,29,.1);
+      box-shadow: 0 16px 34px rgba(23,37,29,.11);
+      backdrop-filter: blur(18px);
+      font-weight: 850;
+      color: rgba(23,37,29,.76);
+      animation: float 5s ease-in-out infinite;
+    }
+    .chip-a { left: 6%; bottom: 12%; }
+    .chip-b { right: 8%; top: 16%; animation-delay: -1.2s; }
+
+    .scroll-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      color: rgba(23,37,29,.55);
+      font-size: .8rem;
+      font-weight: 780;
+    }
+    .scroll-hint::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 34px;
+      margin: 9px auto 0;
+      background: linear-gradient(to bottom, var(--forest), transparent);
+      animation: drop 1.5s ease-in-out infinite;
+    }
+
+    .section { padding: clamp(86px, 11vw, 160px) 0; position: relative; }
+    .section.compact { padding: 88px 0; }
+    .center { text-align: center; }
+    .eyebrow {
+      margin: 0 0 13px;
+      color: var(--clay);
+      font-weight: 920;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .77rem;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(2.35rem, 6vw, 6.6rem);
+      line-height: .9;
+      letter-spacing: -.075em;
+      font-weight: 920;
+    }
+    .lead {
+      margin: 24px auto 0;
+      max-width: 780px;
+      color: rgba(23,37,29,.68);
+      font-size: clamp(1.04rem, 1.6vw, 1.35rem);
+      line-height: 1.65;
+      font-weight: 560;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      align-items: center;
+      gap: clamp(32px, 7vw, 86px);
+    }
+    .big-copy h2 { max-width: 760px; }
+    .big-copy p { max-width: 620px; margin: 24px 0 0; color: rgba(23,37,29,.68); line-height: 1.75; font-size: 1.08rem; }
+    .media-card {
+      min-height: 520px;
+      position: relative;
+      border-radius: 42px;
+      overflow: hidden;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.5), transparent),
+        linear-gradient(180deg, #cae3e8 0 42%, #edddad 43% 56%, #567c4e 57% 100%);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.75);
+      transform-style: preserve-3d;
+      transition: transform .2s ease;
+    }
+    .media-card::before {
+      content: "Imagine placeholder";
+      position: absolute;
+      left: 22px;
+      top: 22px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.68);
+      color: rgba(23,37,29,.62);
+      font-size: .75rem;
+      font-weight: 900;
+      border: 1px solid rgba(23,37,29,.09);
+      backdrop-filter: blur(12px);
+    }
+    .media-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -14% -6% -14%;
+      height: 56%;
+      background: repeating-linear-gradient(110deg, rgba(255,255,255,.12) 0 8px, transparent 8px 34px), linear-gradient(180deg, rgba(31,71,51,.08), rgba(31,71,51,.24));
+      clip-path: polygon(0 35%, 24% 12%, 48% 44%, 68% 7%, 100% 39%, 100% 100%, 0 100%);
+    }
+    .glass-stat {
+      position: absolute;
+      right: 26px;
+      bottom: 26px;
+      width: min(72%, 330px);
+      padding: 21px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(23,37,29,.11);
+      box-shadow: 0 22px 50px rgba(23,37,29,.13);
+    }
+    .glass-stat strong { display: block; font-size: 2.2rem; letter-spacing: -.06em; }
+    .glass-stat span { color: var(--muted); font-weight: 680; }
+
+    .sticky-story { background: linear-gradient(180deg, rgba(255,255,255,.26), rgba(255,255,255,.58)); border-block: 1px solid rgba(23,37,29,.08); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, .9fr) minmax(320px, 1.1fr);
+      gap: clamp(36px, 7vw, 80px);
+      align-items: start;
+    }
+    .story-copy {
+      position: sticky;
+      top: 150px;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .story-copy h2 { font-size: clamp(2.4rem, 5vw, 5.5rem); }
+    .story-copy p { color: rgba(23,37,29,.68); line-height: 1.7; font-size: 1.07rem; max-width: 520px; }
+    .story-progress {
+      margin-top: 26px;
+      width: min(100%, 360px);
+      height: 5px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(23,37,29,.09);
+    }
+    .story-progress span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--forest), var(--sun)); transition: width .15s linear; }
+    .story-scenes { display: grid; gap: 30px; }
+    .scene {
+      min-height: 58vh;
+      display: grid;
+      align-content: end;
+      border-radius: 40px;
+      overflow: hidden;
+      position: relative;
+      padding: 34px;
+      background: var(--paper);
+      border: 1px solid rgba(23,37,29,.1);
+      box-shadow: var(--shadow-soft);
+    }
+    .scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--scene-bg, linear-gradient(135deg, #d9ecea, #f7e5b8));
+      transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .8s ease;
+      transform: scale(1.08);
+    }
+    .scene.in-view::before { transform: scale(1); filter: saturate(1.08); }
+    .scene::after {
+      content: "Imagine placeholder";
+      position: absolute;
+      left: 24px;
+      top: 24px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.6);
+      backdrop-filter: blur(14px);
+      color: rgba(23,37,29,.64);
+      font-size: .72rem;
+      font-weight: 900;
+      border: 1px solid rgba(23,37,29,.08);
+    }
+    .scene-content {
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
+      padding: 26px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(22px);
+      border: 1px solid rgba(255,255,255,.58);
+      transform: translateY(22px);
+      opacity: .7;
+      transition: transform .6s ease, opacity .6s ease;
+    }
+    .scene.in-view .scene-content { transform: translateY(0); opacity: 1; }
+    .scene-content h3 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.6rem); letter-spacing: -.05em; line-height: .98; }
+    .scene-content p { margin: 14px 0 0; color: rgba(23,37,29,.68); line-height: 1.6; }
+    .scene:nth-child(1) { --scene-bg: linear-gradient(135deg, #d6edf0 0%, #fff2c6 48%, #6f925a 49%, #315944 100%); }
+    .scene:nth-child(2) { --scene-bg: radial-gradient(circle at 40% 30%, rgba(255,220,140,.95), transparent 12rem), linear-gradient(135deg, #1e382c, #8a5b39); color: #fff; }
+    .scene:nth-child(2) .scene-content { background: rgba(255,253,247,.82); color: var(--ink); }
+    .scene:nth-child(3) { --scene-bg: linear-gradient(135deg, #f4ead7 0%, #cfe0b4 48%, #789165 100%); }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .highlight {
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(23,37,29,.1);
+      box-shadow: 0 16px 44px rgba(23,37,29,.08);
+      padding: 24px;
+      transition: transform .28s ease, box-shadow .28s ease, background .28s ease;
+      cursor: default;
+    }
+    .highlight::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -34% -20%;
+      height: 62%;
+      background: radial-gradient(circle at 50% 0%, rgba(241,182,95,.22), transparent 46%), linear-gradient(180deg, rgba(31,71,51,.02), rgba(31,71,51,.12));
+      transform: translateY(18px);
+      transition: transform .3s ease;
+    }
+    .highlight:hover { transform: translateY(-8px); box-shadow: 0 28px 72px rgba(23,37,29,.13); background: rgba(255,255,255,.84); }
+    .highlight:hover::before { transform: translateY(0); }
+    .highlight span { font-size: 2.3rem; position: relative; }
+    .highlight h3 { position: relative; margin: 50px 0 0; font-size: 1.5rem; letter-spacing: -.045em; }
+    .highlight p { position: relative; margin: 12px 0 0; color: rgba(23,37,29,.66); line-height: 1.55; }
+
+    .wide-showcase {
+      min-height: 92svh;
+      display: grid;
+      place-items: center;
+      overflow: clip;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,.1)),
+        radial-gradient(circle at 50% 20%, rgba(241,182,95,.36), transparent 28rem),
+        linear-gradient(135deg, #dceff2, #fbf0d1 48%, #c3d293 49%, #486b46 100%);
+      border-block: 1px solid rgba(23,37,29,.08);
+      position: relative;
+    }
+    .wide-showcase::before {
+      content: "Imagine panoramică placeholder";
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(14px);
+      color: rgba(23,37,29,.64);
+      font-size: .78rem;
+      font-weight: 900;
+      border: 1px solid rgba(23,37,29,.1);
+    }
+    .wide-copy { text-align: center; padding: 72px 0; }
+    .wide-copy h2 { max-width: 1000px; margin: 0 auto; }
+    .wide-copy .lead { color: rgba(23,37,29,.74); }
+    .wide-orbit {
+      width: min(92vw, 960px);
+      min-height: 280px;
+      margin: 42px auto 0;
+      position: relative;
+    }
+    .orbit-card {
+      position: absolute;
+      width: min(270px, 40vw);
+      padding: 18px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.74);
+      backdrop-filter: blur(22px);
+      border: 1px solid rgba(23,37,29,.1);
+      box-shadow: 0 18px 48px rgba(23,37,29,.12);
+      font-weight: 820;
+      animation: float 6s ease-in-out infinite;
+    }
+    .orbit-card small { display: block; color: var(--muted); margin-top: 7px; line-height: 1.45; font-weight: 650; }
+    .orbit-card.one { left: 0; top: 18px; }
+    .orbit-card.two { right: 0; top: 74px; animation-delay: -1.4s; }
+    .orbit-card.three { left: 50%; bottom: 6px; transform: translateX(-50%); animation-delay: -2.5s; }
+
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 54px;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(23,37,29,.1);
+      box-shadow: var(--shadow-soft);
+      background: rgba(23,37,29,.1);
+    }
+    .spec {
+      min-height: 175px;
+      background: rgba(255,255,255,.72);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .spec strong { display: block; font-size: clamp(2.2rem, 4vw, 4.2rem); line-height: .9; letter-spacing: -.07em; }
+    .spec span { color: rgba(23,37,29,.62); font-weight: 760; }
+
+    .contact-band {
+      padding: 120px 0 80px;
+    }
+    .contact-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 48px;
+      min-height: 520px;
+      padding: clamp(28px, 6vw, 72px);
+      display: grid;
+      grid-template-columns: 1fr .78fr;
+      gap: 34px;
+      align-items: end;
+      background:
+        radial-gradient(circle at 84% 22%, rgba(255,255,255,.74), transparent 18rem),
+        linear-gradient(135deg, #1d382b, #315944 52%, #8a5b39 100%);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -26% -10%;
+      height: 62%;
+      background: rgba(255,255,255,.1);
+      clip-path: polygon(0 50%, 18% 19%, 35% 58%, 54% 24%, 72% 62%, 88% 30%, 100% 54%, 100% 100%, 0 100%);
+    }
+    .contact-box > * { position: relative; z-index: 2; }
+    .contact-box .eyebrow { color: #ffd48c; }
+    .contact-box h2 { font-size: clamp(2.6rem, 6.7vw, 7.2rem); max-width: 850px; }
+    .contact-box p { color: rgba(255,255,255,.78); line-height: 1.7; max-width: 680px; font-size: 1.08rem; }
+    .mail-cards { display: grid; gap: 14px; }
+    .mail-card {
+      display: block;
+      text-decoration: none;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(18px);
+      transition: transform .22s ease, background .22s ease;
+    }
+    .mail-card:hover { transform: translateY(-5px); background: rgba(255,255,255,.2); }
+    .mail-card small { display: block; color: rgba(255,255,255,.62); font-weight: 800; margin-bottom: 7px; }
+    .mail-card strong { font-size: 1.02rem; overflow-wrap: anywhere; }
+
+    .footer {
+      padding: 34px 0 48px;
+      color: rgba(23,37,29,.64);
+    }
+    .footer .shell { display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(23,37,29,.1); padding-top: 28px; }
+    .footer a { text-decoration: none; font-weight: 800; color: var(--forest); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px) scale(.985);
+      filter: blur(8px);
+      transition: opacity .75s ease, transform .75s cubic-bezier(.2,.8,.2,1), filter .75s ease;
+    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    .split-lines .line {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform .85s cubic-bezier(.19,1,.22,1), opacity .85s ease;
+    }
+    .split-lines.is-visible .line { transform: translateY(0); opacity: 1; }
+    .split-lines .line:nth-child(2) { transition-delay: .08s; }
+    .split-lines .line:nth-child(3) { transition-delay: .16s; }
+
+    @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+    @keyframes flame { from { transform: translateY(0) scaleX(.95); } to { transform: translateY(-6px) scaleX(1.12); } }
+    @keyframes float { 0%,100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+    @keyframes drop { 0% { transform: translateY(-8px); opacity: 0; } 40% { opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
+
+    @media (max-width: 980px) {
+      .main-links, .reserve-small { display: none; }
+      .menu-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(23,37,29,.13);
+        background: rgba(255,255,255,.7);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-weight: 850;
+        color: var(--ink);
+      }
+      .main-links.is-open {
+        display: grid;
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 76px;
+        padding: 14px;
+        background: rgba(255,253,247,.96);
+        border: 1px solid rgba(23,37,29,.1);
+        border-radius: 24px;
+        box-shadow: var(--shadow-soft);
+      }
+      .intro-grid, .story-grid, .contact-box { grid-template-columns: 1fr; }
+      .story-copy { position: relative; top: auto; min-height: auto; }
+      .highlight-grid, .specs { grid-template-columns: repeat(2, 1fr); }
+      .hero-stage { height: 440px; }
+      .camper { right: 5%; width: 175px; }
+      .tent { left: 46%; width: 150px; }
+    }
+
+    @media (max-width: 640px) {
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+      .product-nav { top: 69px; }
+      .hero { padding-top: 118px; }
+      h1 { font-size: clamp(4rem, 22vw, 7rem); }
+      .hero-stage { min-height: 390px; border-radius: 30px; }
+      .floating-chip { display: none; }
+      .camper { width: 140px; height: 66px; right: 5%; }
+      .tent { width: 120px; height: 76px; left: 42%; }
+      .highlight-grid, .specs { grid-template-columns: 1fr; }
+      .wide-orbit { min-height: 460px; }
+      .orbit-card { width: min(100%, 280px); position: relative; inset: auto !important; margin: 14px auto; transform: none !important; }
+      .contact-box { border-radius: 34px; min-height: 0; }
+      .footer .shell { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#continut">Sari la conținut</a>
+
+  <header class="topbar" id="topbar">
+    <nav class="nav shell" aria-label="Navigație principală">
+      <a class="brand" href="index.html" aria-label="Camping Botușel - acasă">
+        <img src="assets/botusel-logo.svg" alt="" width="44" height="44">
+        <span><strong>Camping Botușel</strong><span>Fundu Moldovei · Bucovina</span></span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-links">Meniu</button>
+      <div class="main-links" id="main-links">
+        <a href="#highlights">Highlights</a>
+        <a href="#atmosfera">Atmosferă</a>
+        <a href="#scenarii">Scenarii</a>
+        <a href="#detalii">Detalii</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="reserve-small" href="mailto:gratiela_smi@yahoo.com?subject=Rezervare%20Camping%20Botu%C8%99el">Rezervări</a>
+    </nav>
+  </header>
+
+  <div class="product-nav" aria-label="Secțiuni Camping Botușel">
+    <div class="shell">
+      <div class="product-title">Camping Botușel</div>
+      <div class="product-tabs">
+        <a href="#sus" data-tab="sus">Prezentare</a>
+        <a href="#highlights" data-tab="highlights">Highlights</a>
+        <a href="#atmosfera" data-tab="atmosfera">Atmosferă</a>
+        <a href="#scenarii" data-tab="scenarii">Scenarii</a>
+        <a href="#detalii" data-tab="detalii">Detalii</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="continut">
+    <section class="hero" id="sus" data-section="sus">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="shell hero-inner">
+        <div class="kicker reveal"><span class="dot"></span> În curând · Camping în Bucovina</div>
+        <h1 class="split-lines" aria-label="Camping Botușel">
+          <span class="line">Camping</span>
+          <span class="line">Botușel</span>
+        </h1>
+        <p class="hero-subtitle reveal">Un loc natural, vesel și aerisit pentru corturi, autorulote, seri la foc și dimineți liniștite în Fundu Moldovei.</p>
+        <div class="hero-actions reveal">
+          <a class="button primary" href="mailto:gratiela_smi@yahoo.com?subject=Rezervare%20Camping%20Botu%C8%99el">Scrie pentru rezervare</a>
+          <a class="button secondary" href="#highlights">Explorează pagina</a>
+        </div>
+
+        <div class="hero-stage tilt-card" aria-label="Imagine placeholder pentru Camping Botușel">
+          <span class="placeholder-label">Hero image placeholder</span>
+          <div class="sun-disc"></div>
+          <div class="stage-mountain"></div>
+          <div class="stage-mountain two"></div>
+          <div class="stage-meadow"></div>
+          <div class="campfire"></div>
+          <div class="tent"></div>
+          <div class="camper"></div>
+          <div class="floating-chip chip-a">⛺ Corturi <small></small></div>
+          <div class="floating-chip chip-b">🚐 Autorulote <small></small></div>
+        </div>
+      </div>
+      <div class="scroll-hint">Derulează</div>
+    </section>
+
+    <section class="section" id="highlights" data-section="highlights">
+      <div class="shell intro-grid">
+        <div class="big-copy reveal">
+          <p class="eyebrow">Vibe de produs. Suflet de munte.</p>
+          <h2>Campingul prezentat ca o experiență, nu ca o listă.</h2>
+          <p>Pagina principală este construită ca un showcase vizual: spații mari, tranziții fluide, cadre placeholder pentru fotografii reale și secțiuni care se activează pe măsură ce vizitatorul derulează.</p>
+          <p>Identitatea rămâne Botușel: Bucovina, pajiște, lemn, corturi, autorulote și foc de tabără. Fără neon, fără stil urban rece.</p>
+        </div>
+        <div class="media-card tilt-card reveal" aria-label="Imagine placeholder cu valea Botușel">
+          <div class="glass-stat"><strong>2026</strong><span>site de prezentare în pregătire</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sticky-story" id="atmosfera" data-section="atmosfera">
+      <div class="shell story-grid">
+        <div class="story-copy reveal">
+          <p class="eyebrow">Atmosferă pe scroll</p>
+          <h2>Fiecare secțiune schimbă ritmul paginii.</h2>
+          <p>Pe desktop, textul rămâne aproape fix, iar imaginile placeholder trec în cadre mari. Pe mobil, aceeași poveste se citește simplu, vertical.</p>
+          <div class="story-progress" aria-hidden="true"><span id="story-progress"></span></div>
+        </div>
+        <div class="story-scenes">
+          <article class="scene" data-scene>
+            <div class="scene-content">
+              <h3>Dimineți cu aer curat.</h3>
+              <p>Un cadru larg pentru pajiște, vale și lumina dimineții. Aici va intra fotografia principală a locului.</p>
+            </div>
+          </article>
+          <article class="scene" data-scene>
+            <div class="scene-content">
+              <h3>Seri la foc.</h3>
+              <p>O secțiune mai caldă, cu contrast puternic, pentru povești, liniște și atmosfera de camping adevărat.</p>
+            </div>
+          </article>
+          <article class="scene" data-scene>
+            <div class="scene-content">
+              <h3>Loc pentru drum.</h3>
+              <p>Prezentare pentru autorulote și corturi, cu accent pe spațiu, acces și simplitate.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="scenarii" data-section="scenarii">
+      <div class="shell center reveal">
+        <p class="eyebrow">By scenario</p>
+        <h2>Pentru opriri scurte, weekenduri și seri lungi.</h2>
+        <p class="lead">Structură inspirată de paginile de produs: fiecare mod de folosire primește propriul card, propria mișcare și propriul ritm vizual.</p>
+      </div>
+      <div class="shell highlight-grid">
+        <article class="highlight reveal"><span>⛺</span><h3>Campare la cort</h3><p>Text scurt, clar, cu spațiu pentru o fotografie reală și detalii despre zonele de cort.</p></article>
+        <article class="highlight reveal"><span>🚐</span><h3>Autorulotă</h3><p>Prezentare calmă pentru cei care vin pe drum, cu acces, staționare și reguli publicate ulterior.</p></article>
+        <article class="highlight reveal"><span>🔥</span><h3>Foc de tabără</h3><p>Moment vizual central al identității: lemn, căldură, povești și seară de Bucovina.</p></article>
+        <article class="highlight reveal"><span>🌲</span><h3>Natură</h3><p>Ton prietenos și natural, cu accent pe liniște, aer curat și peisaj montan.</p></article>
+      </div>
+    </section>
+
+    <section class="wide-showcase" aria-label="Secțiune panoramică placeholder">
+      <div class="shell wide-copy reveal">
+        <p class="eyebrow">Imagine mare. Mesaj simplu.</p>
+        <h2>Când fotografiile reale sunt gata, pagina le lasă să respire.</h2>
+        <p class="lead">Placeholder-ele sunt pregătite pentru imagini full-width, cadre de dronă, detalii cu lemn, pajiște, semnalistică și zone de campare.</p>
+        <div class="wide-orbit" aria-hidden="true">
+          <div class="orbit-card one">Hover & parallax<small>Cardurile reacționează discret la cursor și scroll.</small></div>
+          <div class="orbit-card two">Scroll reveals<small>Textele intră treptat, ca într-un showcase modern.</small></div>
+          <div class="orbit-card three">Light mode<small>Curat, luminos, natural, fără fundal întunecat.</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="detalii" data-section="detalii">
+      <div class="shell center reveal">
+        <p class="eyebrow">Informații rapide</p>
+        <h2>Detaliile complete vin în curând.</h2>
+        <p class="lead">Momentan pagina principală comunică lansarea, identitatea și contactul. Prețuri, reguli, hartă și galerie reală pot fi adăugate imediat când există informațiile finale.</p>
+      </div>
+      <div class="shell specs reveal" aria-label="Detalii rapide Camping Botușel">
+        <div class="spec"><strong>01</strong><span>Fundu Moldovei, Bucovina</span></div>
+        <div class="spec"><strong>02</strong><span>Potrivit pentru corturi și autorulote</span></div>
+        <div class="spec"><strong>03</strong><span>Rezervări pe email</span></div>
+        <div class="spec"><strong>04</strong><span>Site complet în pregătire</span></div>
+      </div>
+    </section>
+
+    <section class="contact-band" id="contact-rapid">
+      <div class="shell contact-box reveal">
+        <div>
+          <p class="eyebrow">Contact direct</p>
+          <h2>Scrie-ne pentru rezervări.</h2>
+          <p>Până publicăm pagina completă, contactul rămâne simplu: un email pentru rezervări și unul pentru alte întrebări. Pagina de contact existentă este păstrată separat.</p>
+          <div class="hero-actions" style="justify-content:flex-start">
+            <a class="button primary" href="contact.html" style="background:#fff;color:#17251d">Pagina de contact</a>
+            <a class="button secondary" href="#sus" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.25)">Înapoi sus</a>
+          </div>
+        </div>
+        <div class="mail-cards">
+          <a class="mail-card" href="mailto:gratiela_smi@yahoo.com?subject=Rezervare%20Camping%20Botu%C8%99el"><small>Rezervări</small><strong>gratiela_smi@yahoo.com</strong></a>
+          <a class="mail-card" href="mailto:tonegari.stefan@gmail.com?subject=%C3%8Entrebare%20Camping%20Botu%C8%99el"><small>Alte întrebări</small><strong>tonegari.stefan@gmail.com</strong></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <span>Camping Botușel · Fundu Moldovei · Bucovina</span>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const progress = document.querySelector('.progress');
+    const topbar = document.querySelector('#topbar');
+    const menuButton = document.querySelector('.menu-button');
+    const mainLinks = document.querySelector('#main-links');
+    const tabs = [...document.querySelectorAll('[data-tab]')];
+    const sections = [...document.querySelectorAll('[data-section]')];
+    const storyProgress = document.querySelector('#story-progress');
+
+    function onScroll() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? window.scrollY / max : 0;
+      progress.style.transform = `scaleX(${ratio})`;
+      document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
+      topbar.classList.toggle('is-scrolled', window.scrollY > 18);
+
+      if (storyProgress) {
+        const story = document.querySelector('.sticky-story');
+        const rect = story.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const value = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+        storyProgress.style.width = `${value * 100}%`;
+      }
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (menuButton && mainLinks) {
+      menuButton.addEventListener('click', () => {
+        const open = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!open));
+        mainLinks.classList.toggle('is-open', !open);
+      });
+      mainLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        menuButton.setAttribute('aria-expanded', 'false');
+        mainLinks.classList.remove('is-open');
+      }));
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          if (!entry.target.matches('[data-scene]')) revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.reveal, .split-lines').forEach((el) => revealObserver.observe(el));
+
+    const sceneObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.target.classList.toggle('in-view', entry.isIntersecting));
+    }, { threshold: .48 });
+    document.querySelectorAll('[data-scene]').forEach((scene) => sceneObserver.observe(scene));
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        tabs.forEach((tab) => tab.classList.toggle('is-active', tab.dataset.tab === entry.target.dataset.section));
+      });
+    }, { threshold: .35, rootMargin: '-25% 0px -45% 0px' });
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    if (!prefersReduced) {
+      document.querySelectorAll('.tilt-card').forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - .5;
+          const y = (event.clientY - rect.top) / rect.height - .5;
+          card.style.transform = `perspective(1200px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) translateY(-2px)`;
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg) translateY(0)';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
