@@ -4,6 +4,8 @@ Static Romanian presentation site for Camping Botusel.
 
 For future Codex instances and maintainers, read `AGENTS.md` before changing or deploying the site.
 
+Additional source media and branding references live in `C:\Users\Stefan\Desktop\Camping`.
+
 ## Files
 
 - `index.html` - main page

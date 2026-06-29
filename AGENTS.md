@@ -5,6 +5,7 @@ This repository is the source of truth for the Camping Botusel static website.
 ## Project Facts
 
 - Local repo path on Stefan's PC: `C:\Users\Stefan\Documents\Camping`
+- Desktop source/reference folder: `C:\Users\Stefan\Desktop\Camping`
 - GitHub repo: `https://github.com/artistul/camping-botusel-website`
 - Cloudflare account: `Tonegari.stefan@gmail.com's Account`
 - Cloudflare Pages project: `camping-botusel`
@@ -33,17 +34,52 @@ Do not edit DNS records in Zooku unless explicitly asked. Zooku should only poin
 
 The site has no build step. It is plain static HTML/CSS/JS.
 
+## External Source Folder
+
+Also treat `C:\Users\Stefan\Desktop\Camping` as an important source folder for website information and media. It is not the clean Git source of truth, but it contains source/reference material that future Codex instances should inspect before making visual, content, or asset-heavy changes.
+
+Current observed structure:
+
+- `C:\Users\Stefan\Desktop\Camping\Camping branding`
+  - `Pliant A4 Camping.pdf`
+  - `Poster A0 pe panza - Volta Circuits.pdf`
+  - `Poster A3 Camping.pdf`
+  - `Sticker Camping.pdf`
+- `C:\Users\Stefan\Desktop\Camping\General Media`
+  - `In-Construction Campsite Building media`
+  - `Nature shots`
+  - WhatsApp campsite photos and one construction video
+- `C:\Users\Stefan\Desktop\Camping\Website\camping-botusel-website`
+  - A Desktop copy of the static website files
+
+Use this folder as the first place to look for:
+
+- real campsite photos/video
+- branding references
+- poster/flyer/sticker visual direction
+- older or alternate website drafts
+- copy or layout clues not yet merged into the Git repo
+
+Important: do not treat `C:\Users\Stefan\Desktop\Camping\Website\camping-botusel-website` as automatically authoritative over this Git repo. Compare first. As of 2026-06-29, its `contact.html`, `styles.css`, `script.js`, and logo match the repo copy, but its `index.html` has an extra mobile-only CSS patch of about 187 lines. If working on mobile layout, inspect that patch before editing:
+
+```powershell
+git diff --no-index "C:\Users\Stefan\Documents\Camping\index.html" "C:\Users\Stefan\Desktop\Camping\Website\camping-botusel-website\index.html"
+```
+
+If a future Codex chooses to merge Desktop material into the repo, copy only the needed files or changes into `C:\Users\Stefan\Documents\Camping`, test them, commit, push, and deploy through Cloudflare Pages.
+
 ## Edit Workflow
 
-1. Work from `C:\Users\Stefan\Documents\Camping`, not the old Desktop copy.
-2. Check state first:
+1. Work from `C:\Users\Stefan\Documents\Camping`, not the old Desktop website copy.
+2. For content, media, visual, or layout changes, inspect `C:\Users\Stefan\Desktop\Camping` for source material first.
+3. Check state first:
 
    ```powershell
    git status --short --branch
    ```
 
-3. Make focused edits to the relevant file.
-4. Test locally by opening `index.html` directly, or run a small local server if browser routing is needed:
+4. Make focused edits to the relevant file.
+5. Test locally by opening `index.html` directly, or run a small local server if browser routing is needed:
 
    ```powershell
    python -m http.server 8080
@@ -51,7 +87,7 @@ The site has no build step. It is plain static HTML/CSS/JS.
 
    Then open `http://localhost:8080`.
 
-5. Commit and push:
+6. Commit and push:
 
    ```powershell
    git add --all
@@ -193,4 +229,3 @@ Expected HTTP status: `200`.
 - The clean repo source is now `C:\Users\Stefan\Documents\Camping`.
 - The GitHub repo was created from this local source after the first Cloudflare deployment.
 - Initial Cloudflare activation briefly showed old DNS IP `80.92.65.214`; this was corrected by keeping the Cloudflare CNAME records above.
-
