@@ -2,6 +2,8 @@
 
 Static Romanian presentation site for Camping Botusel.
 
+For future Codex instances and maintainers, read `AGENTS.md` before changing or deploying the site.
+
 ## Files
 
 - `index.html` - main page
@@ -22,4 +24,3 @@ DNS is intended to be managed by Cloudflare with these nameservers:
 
 - `addyson.ns.cloudflare.com`
 - `porter.ns.cloudflare.com`
-
