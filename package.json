@@ -1,0 +1,12 @@
+{
+  "name": "camping-botusel-website",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:update": "playwright test --update-snapshots",
+    "check": "powershell -ExecutionPolicy Bypass -File scripts/check-website.ps1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.60.0"
+  }
+}

@@ -1,5 +1,8 @@
 .wrangler/
 node_modules/
+test-results/
+playwright-report/
+*.tsbuildinfo
 dist/
 .DS_Store
 Thumbs.db

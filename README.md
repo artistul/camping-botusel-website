@@ -1,28 +1,25 @@
-# Camping Botusel Website
+# Camping Botușel Website
 
-Static Romanian presentation site for Camping Botusel.
+Static website for Camping Botușel in Fundu Moldovei, Bucovina.
 
-For future Codex instances and maintainers, read `AGENTS.md` before changing or deploying the site.
+The site is plain HTML, CSS, and JavaScript, hosted on Cloudflare Pages. Current pages:
 
-Additional source media and branding references live in `C:\Users\Stefan\Desktop\Camping`.
+- `index.html` - homepage
+- `contact/` - contact page
+- `contact.html` - compatibility redirect
 
-## Files
+## Local Preview
 
-- `index.html` - main page
-- `contact.html` - contact page
-- `styles.css` - visual styling and responsive layout
-- `script.js` - mobile menu and small interaction scripts
-- `assets/botusel-logo.svg` - logo asset
+```powershell
+python -m http.server 8766 --bind 127.0.0.1
+```
 
-## Hosting
+Open `http://127.0.0.1:8766/index.html`.
 
-The site is deployed on Cloudflare Pages:
+## Checks
 
-- Pages project: `camping-botusel`
-- Temporary URL: <https://camping-botusel.pages.dev>
-- Production domains: `campingbotusel.com`, `www.campingbotusel.com`
+```powershell
+npm run check
+```
 
-DNS is intended to be managed by Cloudflare with these nameservers:
-
-- `addyson.ns.cloudflare.com`
-- `porter.ns.cloudflare.com`
+See `AGENTS.md` for the full Codex operating guide, source folders, deployment rules, and Cloudflare details.

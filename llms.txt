@@ -1,0 +1,15 @@
+# Camping Botușel
+
+Camping Botușel is a campsite website for Fundu Moldovei, Bucovina, Romania.
+
+Important routes:
+
+- `/` - homepage
+- `/contact/` - contact page
+
+Contact:
+
+- Reservations: `gratiela_smi@yahoo.com`
+- General questions: `tonegari.stefan@gmail.com`
+
+The site should not claim final prices, opening dates, amenities, capacity, or rules unless Stefan confirms them.

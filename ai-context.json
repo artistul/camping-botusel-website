@@ -1,0 +1,24 @@
+{
+  "project": "Camping Botusel Website",
+  "domain": "campingbotusel.com",
+  "language": "ro",
+  "location": "Fundu Moldovei, Bucovina, Romania",
+  "hosting": {
+    "provider": "Cloudflare Pages",
+    "project": "camping-botusel"
+  },
+  "contacts": {
+    "reservations": "gratiela_smi@yahoo.com",
+    "general": "tonegari.stefan@gmail.com"
+  },
+  "sourceFolders": {
+    "repo": "C:\\Users\\Stefan\\Documents\\Camping",
+    "desktopMedia": "C:\\Users\\Stefan\\Desktop\\Camping"
+  },
+  "contentRules": [
+    "Visible website text is Romanian.",
+    "Do not invent prices, final amenities, opening dates, coordinates, rules, or capacity.",
+    "Use honest in-pregatire language for unconfirmed details.",
+    "Work locally until Stefan confirms commit and deployment."
+  ]
+}
