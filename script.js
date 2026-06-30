@@ -8,6 +8,7 @@ const progress = document.querySelector(".scroll-progress");
 const productNav = document.querySelector(".product-nav");
 const sectionLinks = [...document.querySelectorAll("[data-section-link]")];
 const sections = [...document.querySelectorAll("[data-section]")];
+const samePageHashLinks = [...document.querySelectorAll('.primary-nav a[href^="#"], .product-nav a[href^="#"], .home-hero .button[href^="#"]')];
 
 function setActiveSection(sectionId) {
   sectionLinks.forEach((link) => {
@@ -54,6 +55,30 @@ function closeMenu() {
   document.body.classList.remove("menu-open");
 }
 
+function getShortcutOffset() {
+  const headerHeight = header?.getBoundingClientRect().height || 0;
+  const mobileSectionNavHeight = window.matchMedia("(max-width: 1060px)").matches
+    ? productNav?.getBoundingClientRect().height || 0
+    : 0;
+  const visualGap = window.matchMedia("(max-width: 1060px)").matches ? 28 : 40;
+
+  return headerHeight + mobileSectionNavHeight + visualGap;
+}
+
+function scrollToSectionTarget(target, updateHash = true) {
+  if (!target) return;
+
+  const top = target.getBoundingClientRect().top + window.scrollY - getShortcutOffset();
+  window.scrollTo({
+    top: Math.max(0, top),
+    behavior: prefersReducedMotion ? "auto" : "smooth"
+  });
+
+  if (updateHash) {
+    history.pushState(null, "", `#${target.id}`);
+  }
+}
+
 if (menuButton && primaryNav) {
   menuButton.addEventListener("click", () => {
     const nextOpen = menuButton.getAttribute("aria-expanded") !== "true";
@@ -73,6 +98,26 @@ if (menuButton && primaryNav) {
       menuButton.focus();
     }
   });
+}
+
+samePageHashLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    const id = decodeURIComponent(link.getAttribute("href").slice(1));
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    event.preventDefault();
+    closeMenu();
+    setActiveSection(target.dataset.section || id);
+    scrollToSectionTarget(target);
+  });
+});
+
+if (window.location.hash) {
+  const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+  requestAnimationFrame(() => scrollToSectionTarget(target, false));
 }
 
 const revealObserver = new IntersectionObserver((entries) => {
